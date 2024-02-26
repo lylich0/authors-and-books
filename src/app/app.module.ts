@@ -23,7 +23,7 @@ import {CustomValidatorDirective} from "./directives/custom-validator.directive"
     EditAuthorComponent,
     BookComponent,
     AddBookComponent,
-    EditBookComponent
+    EditBookComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,9 +31,9 @@ import {CustomValidatorDirective} from "./directives/custom-validator.directive"
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    CustomValidatorDirective
+    CustomValidatorDirective,
   ],
-  providers: [CustomValidatorDirective],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

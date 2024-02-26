@@ -1,8 +1,31 @@
 <h2>Edit Book</h2>
-<form>
+<form #form='ngForm'>
   <div>
     <label>Title:</label>
-    <input type="text" [(ngModel)]="book.title" name="title" required>
+    <input type="text"
+           [(ngModel)]="book.title"
+           name="title"
+           required
+           minlength="2"
+           #titleControl="ngModel"
+           appCustomValidation
+           [validationType]="'text'"
+    >
+    <ng-container *ngIf="titleControl.invalid && titleControl.touched">
+      <div *ngIf="titleControl.errors?.['required']; else invalidTextError">
+        You must enter a value.
+      </div>
+      <ng-template #invalidTextError>
+        <div *ngIf="titleControl.errors?.['invalidText']; else minlengthError">
+          Please enter a valid title.
+        </div>
+      </ng-template>
+      <ng-template #minlengthError>
+        <div *ngIf="titleControl.errors?.['minlength']">
+          Please enter at least 2 characters.
+        </div>
+      </ng-template>
+    </ng-container>
   </div>
   <div>
     <label>Genre:</label>
@@ -10,9 +33,19 @@
   </div>
   <div>
     <label>Page Count</label>
-    <input type="text" [(ngModel)]="book.pageCount" name="pageCount" required>
+    <input type="number"
+           [(ngModel)]="book.pageCount"
+           name="pageCount"
+           required
+           #pageCountControl="ngModel"
+           appCustomValidation
+           [validationType]="'number'"
+    >
+    <div *ngIf="pageCountControl.errors?.['invalidNumber']">
+      Please ensure that the page count is 10 or greater. Kindly input a valid number.
+    </div>
   </div>
   <div>
-    <button type="submit" (click)="updateBook()">Update</button>
+    <button type="submit" (click)="updateBook()" [disabled]="form.invalid">Update</button>
   </div>
 </form>

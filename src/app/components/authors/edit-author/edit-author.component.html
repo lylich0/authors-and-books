@@ -1,24 +1,81 @@
-<form>
+<form #form=ngForm>
   <div>
     <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" [(ngModel)]="author.firstName" name="firstName" required>
+    <input type="text"
+           minlength="2"
+           required
+           #firstNameControl="ngModel"
+           appCustomValidation
+           [validationType]="'text'"
+           [(ngModel)]="author.firstName"
+           name="firstName"
+           id="firstName"
+    />
+    <ng-container *ngIf="firstNameControl.invalid && firstNameControl.touched">
+      <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
+        You must enter a value.
+      </div>
+      <ng-template #invalidTextError>
+        <div *ngIf="firstNameControl.errors?.['invalidText']; else minlengthError">
+          Please enter a valid name.
+        </div>
+      </ng-template>
+      <ng-template #minlengthError>
+        <div *ngIf="firstNameControl.errors?.['minlength']">
+          Please enter at least 2 characters.
+        </div>
+      </ng-template>
+    </ng-container>
   </div>
   <div>
     <label for="middleName">Middle Name:</label>
-    <input type="text" id="middleName" [(ngModel)]="author.middleName" name="middleName">
+    <input type="text"
+           id="middleName"
+           [(ngModel)]="author.middleName"
+           name="middleName"
+    >
   </div>
   <div>
     <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" [(ngModel)]="author.lastName" name="lastName" required>
+    <input type="text"
+           minlength="2"
+           required
+           #lastNameControl="ngModel"
+           appCustomValidation
+           [validationType]="'text'"
+           [(ngModel)]="author.lastName"
+           name="lastName"
+           id="lastName"
+    />
+    <ng-container *ngIf="lastNameControl.invalid && lastNameControl.touched">
+      <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
+        You must enter a value.
+      </div>
+      <ng-template #invalidTextError>
+        <div *ngIf="lastNameControl.errors?.['invalidText']; else minlengthError">
+          Please enter a valid name.
+        </div>
+      </ng-template>
+      <ng-template #minlengthError>
+        <div *ngIf="lastNameControl.errors?.['minlength']">
+          Please enter at least 2 characters.
+        </div>
+      </ng-template>
+    </ng-container>
   </div>
   <div>
-    <label>Birth Date:</label>
-    <input type="date" [(ngModel)]="author.birthDate" name="birthDate" required>
+    <label for="birthDate">Birth Date:</label>
+    <input
+      type="date"
+      [(ngModel)]="author.birthDate"
+      name="birthDate"
+      appCustomValidation
+      [validationType]="'date'"
+      id="birthDate"
+    />
   </div>
-
   <app-book></app-book>
-
   <div>
-    <button type="submit" (click)="update()">Update</button>
+    <button type="submit" (click)="update()" [disabled]="form.invalid">Update</button>
   </div>
 </form>

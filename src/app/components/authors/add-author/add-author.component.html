@@ -3,29 +3,63 @@
   <div>
     <label>First Name:</label>
     <input type="text"
-           pattern="^[A-Za-z]+$"
            minlength="2"
+           required
+           #firstNameControl="ngModel"
+           appCustomValidation
+           [validationType]="'text'"
            [(ngModel)]="newAuthor.firstName"
            name="firstName"
-           required
-           #nameControl="ngModel"
     />
-    <ng-container *ngIf="nameControl.invalid && nameControl.touched">
-      <div *ngIf="nameControl.errors?.['required']">
-          You must enter a value.
+    <ng-container *ngIf="firstNameControl.invalid && firstNameControl.touched">
+      <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
+        You must enter a value.
       </div>
-      <div *ngIf="nameControl.errors?.['pattern'] || nameControl.errors?.['minlength'] ">
-        Please enter a valid name.
-      </div>
+      <ng-template #invalidTextError>
+        <div *ngIf="firstNameControl.errors?.['invalidText']; else minlengthError">
+          Please enter a valid name.
+        </div>
+      </ng-template>
+      <ng-template #minlengthError>
+        <div *ngIf="firstNameControl.errors?.['minlength']">
+          Please enter at least 2 characters.
+        </div>
+      </ng-template>
     </ng-container>
   </div>
   <div>
     <label>Middle Name:</label>
-    <input type="text" [(ngModel)]="newAuthor.middleName" name="middleName">
+    <input type="text"
+           [(ngModel)]="newAuthor.middleName"
+           name="middleName"
+    />
   </div>
   <div>
     <label>Last Name:</label>
-    <input type="text" [(ngModel)]="newAuthor.lastName" name="lastName" required>
+    <input type="text"
+           minlength="2"
+           required
+           #lastNameControl="ngModel"
+           appCustomValidation
+           [validationType]="'text'"
+           [(ngModel)]="newAuthor.lastName"
+           name="lastName"
+    />
+    <ng-container *ngIf="lastNameControl.invalid && lastNameControl.touched">
+      <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
+        You must enter a value.
+      </div>
+      <ng-template #invalidTextError>
+        <div *ngIf="lastNameControl.errors?.['invalidText']; else minlengthError">
+          Please enter a valid name.
+        </div>
+      </ng-template>
+      <ng-template #minlengthError>
+        <div *ngIf="lastNameControl.errors?.['minlength']">
+          Please enter at least 2 characters.
+        </div>
+      </ng-template>
+    </ng-container>
   </div>
   <div>
     <label>Birth Date:</label>
@@ -34,6 +68,7 @@
       [(ngModel)]="newAuthor.birthDate"
       name="birthDate"
       appCustomValidation
+      [validationType]="'date'"
     />
   </div>
   <button type="submit" [disabled]="form.invalid">Submit</button>
