@@ -3,6 +3,9 @@ import {Book} from "../../../../models/IBook";
 import {AuthorService} from "../../../../services/author/author.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BookService} from "../../../../services/book/book.service";
+import {HttpClient} from "@angular/common/http";
+import {Genre} from "../../../../models/IGenre";
+import {GenreService} from "../../../../services/genre/genre.service";
 
 @Component({
   selector: 'app-add-book',
@@ -10,6 +13,8 @@ import {BookService} from "../../../../services/book/book.service";
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent implements OnInit {
+  genres: Genre[] = [];
+
   newBook: Book = {
     genre: "",
     pageCount: 0,
@@ -17,10 +22,15 @@ export class AddBookComponent implements OnInit {
   }
   private authorId: any;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router, private genreService: GenreService) {}
 
   ngOnInit(): void {
     this.authorId = this.route.snapshot.paramMap.get('id');
+
+    this.genreService.getAll().subscribe(genres => {
+      this.genres = genres;
+      console.log(this.genres)
+    });
   }
 
   onSubmit(): void {

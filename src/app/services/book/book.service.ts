@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AuthorService} from "../author/author.service";
 import {Book} from "../../models/IBook";
-import {map, mergeMap, Observable, throwError} from "rxjs";
+import {map, mergeMap, Observable } from "rxjs";
 import {Author} from "../../models/IAuthor";
 
 

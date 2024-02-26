@@ -29,11 +29,9 @@
   </ng-container>
   <div>
     <label>Genre:</label>
-    <input type="text"
-           [(ngModel)]="newBook.genre"
-           name="genre"
-           required
-    >
+    <select [(ngModel)]="newBook.genre" name="genre" required>
+      <option *ngFor="let genre of genres" [value]="genre.name">{{ genre.name }}</option>
+    </select>
   </div>
   <div>
     <label>Page Count</label>

@@ -3,6 +3,8 @@ import {Book} from "../../../../models/IBook";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthorService} from "../../../../services/author/author.service";
 import {BookService} from "../../../../services/book/book.service";
+import {Genre} from "../../../../models/IGenre";
+import {GenreService} from "../../../../services/genre/genre.service";
 
 @Component({
   selector: 'app-edit-book',
@@ -14,11 +16,13 @@ export class EditBookComponent implements OnInit {
   book: Book = {genre: "", pageCount: 0, title: ""}
   authorId: string | null = '';
   bookId: string | null = '';
+  genres: Genre[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private bookService: BookService
+    private bookService: BookService,
+    private genreService: GenreService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +35,11 @@ export class EditBookComponent implements OnInit {
       this.book = this.books.find(book => book.id === this.bookId);
       }
     )
+
+    this.genreService.getAll().subscribe(genres => {
+      this.genres = genres;
+      console.log(this.genres)
+    });
   }
 
   updateBook() {
