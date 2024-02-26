@@ -12,6 +12,7 @@ import { EditAuthorComponent } from './components/authors/edit-author/edit-autho
 import { BookComponent } from './components/authors/book/book.component';
 import { AddBookComponent } from './components/authors/book/add-book/add-book.component';
 import { EditBookComponent } from './components/authors/book/edit-book/edit-book.component';
+import {CustomValidatorDirective} from "./directives/custom-validator.directive";
 
 @NgModule({
   declarations: [
@@ -29,9 +30,10 @@ import { EditBookComponent } from './components/authors/book/edit-book/edit-book
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CustomValidatorDirective
   ],
-  providers: [],
+  providers: [CustomValidatorDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

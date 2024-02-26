@@ -11,7 +11,7 @@ import {BookService} from "../../../../services/book/book.service";
 })
 export class AddBookComponent implements OnInit {
   newBook: Book = {
-    authorId: "",
+    id: "",
     genre: "",
     pageCount: 0,
     title: ""

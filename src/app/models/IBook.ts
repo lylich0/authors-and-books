@@ -3,5 +3,4 @@ export interface Book {
   title: string;
   pageCount: number;
   genre: string;
-  authorId: string;
 }

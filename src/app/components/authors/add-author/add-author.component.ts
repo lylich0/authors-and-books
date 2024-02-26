@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Author } from "../../../models/IAuthor";
 import { AuthorService } from "../../../services/author/author.service";
-import { Router } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-add-author',
@@ -10,18 +11,19 @@ import { Router } from "@angular/router";
 })
 export class AddAuthorComponent {
   newAuthor: Author = {
-    birthDate: new Date(),
+    birthDate: null as unknown as Date,
     firstName: "",
     lastName: "",
     middleName: "",
     books: []
   };
 
-  constructor(private authorService: AuthorService, private route: Router) {}
+  constructor(private authorService: AuthorService, private route: ActivatedRoute, private router: Router) {}
 
   onSubmit(): void {
-    this.authorService.create(this.newAuthor).subscribe(() => {
-      this.route.navigate(['/authors']);
+    this.authorService.create(this.newAuthor).subscribe((createdAuthor) => {
+      const authorId = createdAuthor.id;
+      this.router.navigate(['/authors', authorId, 'edit', 'book', 'new']);
     });
   }
 }

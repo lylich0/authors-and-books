@@ -11,7 +11,7 @@ import {BookService} from "../../../../services/book/book.service";
 })
 export class EditBookComponent implements OnInit {
   books: Book[] = [];
-  book: Book = {authorId: "", genre: "", pageCount: 0, title: ""}
+  book: Book = {genre: "", pageCount: 0, title: ""}
   authorId: string | null = '';
   bookId: string | null = '';
 
