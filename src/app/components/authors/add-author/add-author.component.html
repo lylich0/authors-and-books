@@ -1,0 +1,20 @@
+<h2>Add New Author</h2>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label>First Name:</label>
+    <input type="text" [(ngModel)]="newAuthor.firstName" name="firstName" required>
+  </div>
+  <div>
+    <label>Middle Name:</label>
+    <input type="text" [(ngModel)]="newAuthor.middleName" name="middleName">
+  </div>
+  <div>
+    <label>Last Name:</label>
+    <input type="text" [(ngModel)]="newAuthor.lastName" name="lastName" required>
+  </div>
+  <div>
+    <label>Birth Date:</label>
+    <input type="date" [(ngModel)]="newAuthor.birthDate" name="birthDate" required>
+  </div>
+  <button type="submit">Submit</button>
+</form>

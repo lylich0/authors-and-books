@@ -1,0 +1,16 @@
+<h2>Add New Book</h2>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="newBook.title" name="title" required>
+  </div>
+  <div>
+    <label>Genre:</label>
+    <input type="text" [(ngModel)]="newBook.genre" name="genre" required>
+  </div>
+  <div>
+    <label>Page Count</label>
+    <input type="text" [(ngModel)]="newBook.pageCount" name="pageCount" required>
+  </div>
+  <button type="submit">Submit</button>
+</form>

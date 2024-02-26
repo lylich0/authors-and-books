@@ -1,0 +1,40 @@
+{
+  "cards": [
+    {
+      "id": "8652",
+      "birthDate": "2024-02-07",
+      "firstName": "Mila",
+      "lastName": "Bibik",
+      "middleName": "",
+      "books": [
+        {
+          "id": "46tf",
+          "title": "Book 1",
+          "genre": "classic",
+          "pageCount": "19"
+        },
+        {
+          "id": "17yt",
+          "genre": "thriller",
+          "pageCount": "12",
+          "title": "My Little Pony"
+        }
+      ]
+    },
+    {
+      "id": "b2be",
+      "birthDate": "2024-02-27",
+      "firstName": "Zee",
+      "lastName": "Bobik",
+      "middleName": "",
+      "books": [
+        {
+          "id": "45tr",
+          "title": "Book 1",
+          "genre": "classic",
+          "pageCount": "19"
+        }
+      ]
+    }
+  ]
+}

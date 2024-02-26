@@ -1,0 +1,13 @@
+<p>Books: </p>
+<div *ngFor="let book of books" class="card">
+  <div class="card-body">
+    <p class="card-text">{{ book.title }}</p>
+    <p class="card-text">{{ book.genre }}</p>
+    <button (click)="editBook(book.id!)" class="btn btn-primary">Edit</button>
+    <button (click)="deleteBook(book.id!)" class="btn btn-danger">Delete</button>
+  </div>
+</div>
+
+<button (click)="addBook()">Add Book</button>
+
+

@@ -1,0 +1,18 @@
+<h2>Edit Book</h2>
+<form>
+  <div>
+    <label>Title:</label>
+    <input type="text" [(ngModel)]="book.title" name="title" required>
+  </div>
+  <div>
+    <label>Genre:</label>
+    <input type="text" [(ngModel)]="book.genre" name="genre" required>
+  </div>
+  <div>
+    <label>Page Count</label>
+    <input type="text" [(ngModel)]="book.pageCount" name="pageCount" required>
+  </div>
+  <div>
+    <button type="submit" (click)="updateBook()">Update</button>
+  </div>
+</form>
