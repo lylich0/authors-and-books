@@ -23,8 +23,11 @@ export class BookService {
   }
 
   createBook(authorId: string, book: Book): Observable<Author> {
+    const id = this.generateRandomId();
+
     return this.http.get<Author>(`${this.baseURL}/${authorId}`).pipe(
       mergeMap((author: Author) => {
+        book.id = id;
         author.books.push(book);
         return this.http.put<Author>(`${this.baseURL}/${authorId}`, author);
       })
@@ -48,5 +51,17 @@ export class BookService {
         return this.http.put<Author>(`${this.baseURL}/${authorId}`, author);
       })
     );
+  }
+
+  generateRandomId(): string {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+
+    for (let i = 0; i < 4; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
   }
 }
