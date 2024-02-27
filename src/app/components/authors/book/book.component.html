@@ -1,6 +1,6 @@
-<div>
-  <input type="text" id="searchInput" placeholder="Enter book title" [(ngModel)]="searchTerm">
-  <button (click)="searchBooks()">Search</button>
+<div class="input-group">
+  <input type="text" class="form-control" id="searchInput" placeholder="Enter book title" [(ngModel)]="searchTerm">
+  <button class="btn btn-primary" type="button" (click)="searchBooks()">Search</button>
 </div>
 
 <p class="fw-bold">Books: </p>

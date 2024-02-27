@@ -1,0 +1,9 @@
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group input, .input-group button {
+  height: 40px;
+  box-sizing: border-box;
+}
