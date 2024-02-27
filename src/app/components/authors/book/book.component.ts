@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Book} from "../../../models/IBook";
 import {BookService} from "../../../services/book/book.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Author} from "../../../models/IAuthor";
 
 @Component({
   selector: 'app-book',
@@ -13,6 +14,10 @@ export class BookComponent implements OnInit {
   authorId: string | null = '';
 
   @Input() state: string = '';
+
+  searchTerm: string = '';
+  searchResults: Book[] = [];
+  isSearchActive: boolean = false;
 
   constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) { }
 
@@ -38,5 +43,22 @@ export class BookComponent implements OnInit {
   }
   addBook() {
     this.router.navigate(['/authors', this.authorId, 'edit', 'book', 'new']);
+  }
+
+  searchBooks(): void {
+    if (this.searchTerm.trim() !== '') {
+      this.bookService.searchBooks(this.authorId, this.searchTerm).subscribe(
+        (author: Author) => {
+          this.searchResults = author.books;
+          this.isSearchActive = true;
+        },
+        error => {
+          console.error('Error searching books:', error);
+        }
+      );
+    } else {
+      this.searchResults = [];
+      this.isSearchActive = false;
+    }
   }
 }

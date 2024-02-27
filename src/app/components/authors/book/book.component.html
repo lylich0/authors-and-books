@@ -1,14 +1,39 @@
+<div>
+  <input type="text" id="searchInput" placeholder="Enter book title" [(ngModel)]="searchTerm">
+  <button (click)="searchBooks()">Search</button>
+</div>
+
 <p class="fw-bold">Books: </p>
-<div *ngFor="let book of books" class="card d-flex flex-row">
-  <div class="card-body">
-    <h5 class="card-title">Title: {{ book.title }}</h5>
-    <p class="card-text">Genre: {{ book.genre }}</p>
+
+<div *ngIf="isSearchActive; else allBooks">
+  <div *ngIf="searchResults.length > 0">
+    <div *ngFor="let book of searchResults" class="card d-flex flex-row">
+      <div class="card-body">
+        <h5 class="card-title">Title: {{ book.title }}</h5>
+        <p class="card-text">Genre: {{ book.genre }}</p>
+      </div>
+      <div class="buttons d-flex flex-column">
+        <button *ngIf="state !== 'view'" (click)="editBook(book.id!)" class="btn btn-primary m-1">Edit</button>
+        <button *ngIf="state !== 'view'" (click)="deleteBook(book.id!)" class="btn btn-danger m-1">Delete</button>
+      </div>
+    </div>
   </div>
-  <div class="buttons d-flex flex-column">
-    <button *ngIf="state !== 'view'" (click)="editBook(book.id!)" class="btn btn-primary m-1">Edit</button>
-    <button *ngIf="state !== 'view'" (click)="deleteBook(book.id!)" class="btn btn-danger m-1">Delete</button>
+  <div *ngIf="searchResults.length === 0">
+    <p>No books found.</p>
   </div>
 </div>
+<ng-template #allBooks>
+  <div *ngFor="let book of books" class="card d-flex flex-row">
+    <div class="card-body">
+      <h5 class="card-title">Title: {{ book.title }}</h5>
+      <p class="card-text">Genre: {{ book.genre }}</p>
+    </div>
+    <div class="buttons d-flex flex-column">
+      <button *ngIf="state !== 'view'" (click)="editBook(book.id!)" class="btn btn-primary m-1">Edit</button>
+      <button *ngIf="state !== 'view'" (click)="deleteBook(book.id!)" class="btn btn-danger m-1">Delete</button>
+    </div>
+  </div>
+</ng-template>
 <div>
   <button class="btn btn-primary" *ngIf="state !== 'view'" (click)="addBook()">Add Book</button>
 </div>

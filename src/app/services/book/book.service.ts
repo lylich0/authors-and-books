@@ -53,6 +53,15 @@ export class BookService {
     );
   }
 
+  searchBooks(authorId: any, search: string): Observable<Author> {
+    return this.http.get<Author>(`${this.baseURL}/${authorId}`).pipe(
+      map((author: Author) => {
+        author.books = author.books.filter(book => book.title === search);
+        return author;
+      })
+    );
+  }
+
   generateRandomId(): string {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';

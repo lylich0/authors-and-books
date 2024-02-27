@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthorService} from "../../../../services/author/author.service";
 import {Author} from "../../../../models/IAuthor";
@@ -37,7 +37,6 @@ export class AuthorManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.state = this.authorService.getState();
-    console.log(this.state)
 
     if (this.state !== 'add') {
       this.id = this.route.snapshot.paramMap.get('id');
@@ -70,5 +69,4 @@ export class AuthorManagementComponent implements OnInit {
       }
     })
   }
-
 }
