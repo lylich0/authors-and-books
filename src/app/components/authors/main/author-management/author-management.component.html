@@ -1,15 +1,17 @@
-<h2>Add New Author</h2>
-<form #form='ngForm' (ngSubmit)="onSubmit()">
+<h2>{{ headerText[state] }}</h2>
+<form #form='ngForm' (ngSubmit)="handleFormSubmit()">
   <div>
     <label>First Name:</label>
     <input type="text"
            minlength="2"
+           name="firstName"
            required
-           #firstNameControl="ngModel"
+           [ngModel]="state === 'add' ? newAuthor.firstName : author.firstName"
+           (ngModelChange)="state === 'add' ? newAuthor.firstName = $event : author.firstName = $event"
+           #firstNameControl='ngModel'
            appCustomValidation
            [validationType]="'text'"
-           [(ngModel)]="newAuthor.firstName"
-           name="firstName"
+           [disabled]="state === 'view'"
     />
     <ng-container *ngIf="firstNameControl.invalid && firstNameControl.touched">
       <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
@@ -30,20 +32,23 @@
   <div>
     <label>Middle Name:</label>
     <input type="text"
-           [(ngModel)]="newAuthor.middleName"
            name="middleName"
+           [ngModel]="state === 'add' ? newAuthor.middleName : author.middleName"
+           (ngModelChange)="state === 'add' ? newAuthor.middleName = $event : author.middleName = $event"
+           [disabled]="state === 'view'"
     />
   </div>
   <div>
     <label>Last Name:</label>
     <input type="text"
            minlength="2"
+           name="lastName"
            required
            #lastNameControl="ngModel"
            appCustomValidation
-           [validationType]="'text'"
-           [(ngModel)]="newAuthor.lastName"
-           name="lastName"
+           [ngModel]="state === 'add' ? newAuthor.lastName : author.lastName"
+           (ngModelChange)="state === 'add' ? newAuthor.lastName = $event : author.lastName = $event"
+           [disabled]="state === 'view'"
     />
     <ng-container *ngIf="lastNameControl.invalid && lastNameControl.touched">
       <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
@@ -62,14 +67,22 @@
     </ng-container>
   </div>
   <div>
-    <label>Birth Date:</label>
+    <label for="birthDate">Birth Date:</label>
     <input
       type="date"
-      [(ngModel)]="newAuthor.birthDate"
       name="birthDate"
+      id="birthDate"
       appCustomValidation
       [validationType]="'date'"
+      [ngModel]="state === 'add' ? newAuthor.birthDate : author.birthDate"
+      (ngModelChange)="state === 'add' ? newAuthor.birthDate = $event : author.birthDate = $event"
+      [disabled]="state === 'view'"
     />
   </div>
-  <button type="submit" [disabled]="form.invalid">Submit</button>
+  <div *ngIf="state !== 'view'">
+    <button type="submit" [disabled]="form.invalid">{{ state === 'add' ? 'Submit' : 'Update' }}</button>
+  </div>
+  <div *ngIf="state !== 'add'">
+    <app-book [state]="state"></app-book>
+  </div>
 </form>
