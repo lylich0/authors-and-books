@@ -22,7 +22,7 @@ export class BookService {
     );
   }
 
-  createBook(authorId: string, book: Book): Observable<Author> {
+  createBook(authorId: string | null, book: Book): Observable<Author> {
     const id = this.generateRandomId();
 
     return this.http.get<Author>(`${this.baseURL}/${authorId}`).pipe(

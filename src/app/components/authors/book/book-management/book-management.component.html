@@ -1,9 +1,10 @@
-<h2>Edit Book</h2>
-<form #form='ngForm'>
+<h2>{{ isNewBook ? 'Add New Book' : 'Edit Book' }}</h2>
+<form #form='ngForm' (ngSubmit)="isNewBook ? onSubmit() : onUpdate()">
   <div>
     <label>Title:</label>
     <input type="text"
-           [(ngModel)]="book.title"
+           [ngModel]="isNewBook ? newBook.title : updatedBook.title"
+           (ngModelChange)="isNewBook ? newBook.title = $event : updatedBook.title = $event"
            name="title"
            required
            minlength="2"
@@ -29,14 +30,19 @@
   </div>
   <div>
     <label>Genre:</label>
-    <select [(ngModel)]="book.genre" name="genre" required>
+    <select [ngModel]="isNewBook ? newBook.genre : updatedBook.genre"
+            (ngModelChange)="isNewBook ? newBook.genre = $event : updatedBook.genre = $event"
+            name="genre"
+            required
+    >
       <option *ngFor="let genre of genres" [value]="genre.name">{{ genre.name }}</option>
     </select>
   </div>
   <div>
     <label>Page Count</label>
     <input type="number"
-           [(ngModel)]="book.pageCount"
+           [ngModel]="isNewBook ? newBook.pageCount : updatedBook.pageCount"
+           (ngModelChange)="isNewBook ? newBook.pageCount = $event : updatedBook.pageCount = $event"
            name="pageCount"
            required
            #pageCountControl="ngModel"
@@ -48,6 +54,6 @@
     </div>
   </div>
   <div>
-    <button type="submit" (click)="updateBook()" [disabled]="form.invalid">Update</button>
+    <button type="submit" [disabled]="form.invalid">{{ isNewBook? 'Submit' : 'Update' }}</button>
   </div>
 </form>

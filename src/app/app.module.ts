@@ -10,9 +10,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { GenresComponent } from './components/genres/genres.component';
 import { EditAuthorComponent } from './components/authors/edit-author/edit-author.component';
 import { BookComponent } from './components/authors/book/book.component';
-import { AddBookComponent } from './components/authors/book/add-book/add-book.component';
-import { EditBookComponent } from './components/authors/book/edit-book/edit-book.component';
 import {CustomValidatorDirective} from "./directives/custom-validator.directive";
+import { BookManagementComponent } from './components/authors/book/book-management/book-management.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import {CustomValidatorDirective} from "./directives/custom-validator.directive"
     GenresComponent,
     EditAuthorComponent,
     BookComponent,
-    AddBookComponent,
-    EditBookComponent,
+    BookManagementComponent,
   ],
   imports: [
     BrowserModule,
