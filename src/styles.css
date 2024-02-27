@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0 5px;
+}
+
+.card {
+  margin: 10px 0;
+  padding: 5px;
+  background-color: #FFF5EE;
+  border: 2px solid darkgray;
+}
+
+button {
+  margin: 5px 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form div {
+  margin: 5px 0;
+}
+form label {
+  margin: 0;
+  width: 110px;
+}
+
+form input, form select {
+  width: 180px;
+}
+
+

@@ -1,17 +1,22 @@
-<div>
-  <button (click)="add()">Add Author</button>
+<div class="d-flex justify-content-between">
+  <div>
+    <button class='btn btn-primary' (click)="add()">Add Author</button>
+  </div>
+  <div class="d-flex align-items-baseline">
+    <p>Sort By</p>
+    <button class='btn bg-light m-1' (click)="sort('firstName')">First Name</button>
+    <button class='btn bg-light m-1' (click)="sort('lastName')">Last Name</button>
+    <button class='btn bg-light m-1' (click)="sort('booksNumber')">Books</button>
+  </div>
 </div>
-
-<button (click)="sort('firstName')">Sort by First Name</button>
-<button (click)="sort('lastName')">Sort by Last Name</button>
-<button (click)="sort('booksNumber')">Sort by Books Number</button>
-
-<div *ngFor="let author of authors" class="card">
+<div *ngFor="let author of authors" class="card d-flex flex-row">
   <div class="card-body">
-    <p class="card-text">Author: {{ author.firstName }} {{ author.middleName }} {{ author.lastName }}</p>
+    <h5 class="card-title">Author: {{ author.firstName }} {{ author.middleName }} {{ author.lastName }}</h5>
     <p class="card-text">Books: {{ author.books.length }}</p>
-    <button (click)="view(author.id!)">View Details</button>
-    <button (click)="edit(author.id!)">Edit</button>
-    <button (click)="delete(author.id!)">Delete</button>
+  </div>
+  <div class="buttons d-flex flex-column">
+    <button class='btn btn-primary' (click)="view(author.id!)">View Details</button>
+    <button class='btn btn-secondary' (click)="edit(author.id!)">Edit</button>
+    <button class='btn btn-danger' (click)="delete(author.id!)">Delete</button>
   </div>
 </div>

@@ -20,29 +20,27 @@ export class MainComponent implements OnInit {
     });
   }
 
-  view(id: string) {
-    this.authorService.get(id).subscribe(author => {
-      this.selectedAuthor = author;
-      console.log(this.selectedAuthor);
-    })
+  add() {
+    this.authorService.setState('add');
+    this.router.navigate(['/authors/new'])
   }
+
+  view(id: string) {
+    this.authorService.setState('view');
+    this.router.navigate(['/authors', id, 'view']);
+  }
+
+  edit(id: string) {
+    this.authorService.setState('edit');
+    this.router.navigate(['/authors', id, 'edit']);
+  };
 
   delete(id: string) {
     this.authorService.delete(id).subscribe(author => {
       this.authors = this.authors.filter(author => author.id !== id);
-      console.log("Deleted this author: ", author);
     })
   }
-
-  edit(id: string) {
-    this.router.navigate(['/authors', id, 'edit'])
-  }
-
-  add() {
-    this.router.navigate(['/authors/new'])
-  }
-
   sort(sortBy: string) {
-    this.authorService.sortAll(this.authors, sortBy)
+    this.authorService.sortAll(this.authors, sortBy);
   }
 }

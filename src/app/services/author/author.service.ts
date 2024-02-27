@@ -9,7 +9,23 @@ import {HttpClient} from "@angular/common/http";
 export class AuthorService {
   private baseURL = `http://localhost:3000/cards`
 
-  constructor(private http: HttpClient) {}
+  state: 'add' | 'edit' | 'view' = 'add';
+
+  setState(newState: 'add' | 'edit' | 'view') {
+    this.state = newState;
+    localStorage.setItem('state', newState);
+  }
+
+  getState(): 'add' | 'edit' | 'view' {
+    return this.state;
+  }
+
+  constructor(private http: HttpClient) {
+    const storedState = localStorage.getItem('state');
+    if (storedState) {
+      this.state = storedState as 'add' | 'edit' | 'view';
+    }
+  }
 
   getAll(): Observable<Author[]> {
     return this.http.get<Author[]>(this.baseURL);

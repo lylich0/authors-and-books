@@ -1,11 +1,14 @@
-<p>Books: </p>
-<div *ngFor="let book of books" class="card">
+<p class="fw-bold">Books: </p>
+<div *ngFor="let book of books" class="card d-flex flex-row">
   <div class="card-body">
-    <p class="card-text">{{ book.title }}</p>
-    <p class="card-text">{{ book.genre }}</p>
-    <button (click)="editBook(book.id!)" class="btn btn-primary">Edit</button>
-    <button (click)="deleteBook(book.id!)" class="btn btn-danger">Delete</button>
+    <h5 class="card-title">Title: {{ book.title }}</h5>
+    <p class="card-text">Genre: {{ book.genre }}</p>
+  </div>
+  <div class="buttons d-flex flex-column">
+    <button *ngIf="state !== 'view'" (click)="editBook(book.id!)" class="btn btn-primary m-1">Edit</button>
+    <button *ngIf="state !== 'view'" (click)="deleteBook(book.id!)" class="btn btn-danger m-1">Delete</button>
   </div>
 </div>
-
-<button (click)="addBook()">Add Book</button>
+<div>
+  <button class="btn btn-primary" *ngIf="state !== 'view'" (click)="addBook()">Add Book</button>
+</div>

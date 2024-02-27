@@ -1,4 +1,4 @@
-<h2>{{ isNewBook ? 'Add New Book' : 'Edit Book' }}</h2>
+<h2 class="text-uppercase text-center">{{ isNewBook ? 'Adding Book' : 'Editing Book' }}</h2>
 <form #form='ngForm' (ngSubmit)="isNewBook ? onSubmit() : onUpdate()">
   <div>
     <label>Title:</label>
@@ -13,16 +13,16 @@
            [validationType]="'text'"
     >
     <ng-container *ngIf="titleControl.invalid && titleControl.touched">
-      <div *ngIf="titleControl.errors?.['required']; else invalidTextError">
+      <div class="text-danger" *ngIf="titleControl.errors?.['required']; else invalidTextError">
         You must enter a value.
       </div>
       <ng-template #invalidTextError>
-        <div *ngIf="titleControl.errors?.['invalidText']; else minlengthError">
+        <div class="text-danger" *ngIf="titleControl.errors?.['invalidText']; else minlengthError">
           Please enter a valid title.
         </div>
       </ng-template>
       <ng-template #minlengthError>
-        <div *ngIf="titleControl.errors?.['minlength']">
+        <div class="text-danger" *ngIf="titleControl.errors?.['minlength']">
           Please enter at least 2 characters.
         </div>
       </ng-template>
@@ -39,7 +39,7 @@
     </select>
   </div>
   <div>
-    <label>Page Count</label>
+    <label>Pages: </label>
     <input type="number"
            [ngModel]="isNewBook ? newBook.pageCount : updatedBook.pageCount"
            (ngModelChange)="isNewBook ? newBook.pageCount = $event : updatedBook.pageCount = $event"
@@ -49,11 +49,11 @@
            appCustomValidation
            [validationType]="'number'"
     >
-    <div *ngIf="pageCountControl.errors?.['invalidNumber']">
+    <div class="text-danger" *ngIf="pageCountControl.errors?.['invalidNumber']">
       Please ensure that the page count is 10 or greater. Kindly input a valid number.
     </div>
   </div>
   <div>
-    <button type="submit" [disabled]="form.invalid">{{ isNewBook? 'Submit' : 'Update' }}</button>
+    <button class='btn btn-primary' type="submit" [disabled]="form.invalid">{{ isNewBook? 'Submit' : 'Update' }}</button>
   </div>
 </form>

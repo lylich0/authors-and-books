@@ -58,7 +58,7 @@ export class BookManagementComponent implements OnInit {
 
   onSubmit(): void {
     this.bookService.createBook(this.authorId, this.newBook).subscribe(() => {
-      this.router.navigate(['/authors', this.authorId, 'edit']);
+      this.router.navigate(['/authors']);
     });
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Book} from "../../../models/IBook";
 import {BookService} from "../../../services/book/book.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -11,6 +11,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class BookComponent implements OnInit {
   books: Book[] = [];
   authorId: string | null = '';
+
+  @Input() state: string = '';
 
   constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) { }
 

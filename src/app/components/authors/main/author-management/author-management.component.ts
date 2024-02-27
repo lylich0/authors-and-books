@@ -30,9 +30,9 @@ export class AuthorManagementComponent implements OnInit {
   ) {}
 
   headerText: { [key: string]: string } = {
-    'add': 'Adding Author',
-    'edit': 'Editing Author Information',
-    'view': 'Viewing Author Details'
+    'add': 'Adding author',
+    'edit': 'Editing author information',
+    'view': 'Viewing author details'
   };
 
   ngOnInit(): void {
