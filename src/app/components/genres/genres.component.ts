@@ -39,4 +39,8 @@ export class GenresComponent implements OnInit {
       this.genres = genres;
     })
   }
+
+  sort() {
+    return this.genreService.sortGenre(this.genres);
+  }
 }

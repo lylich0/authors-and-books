@@ -1,3 +1,7 @@
 :host > div {
   margin: var(--margin);
 }
+
+button {
+  width: 120px;
+}
