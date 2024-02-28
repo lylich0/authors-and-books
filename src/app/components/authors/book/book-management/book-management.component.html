@@ -1,4 +1,4 @@
-<h2 class="text-uppercase text-center mt-2">{{ isNewBook ? 'Adding Book' : 'Editing Book' }}</h2>
+<h4 class="text-uppercase text-center mt-2">{{ isNewBook ? 'Adding Book' : 'Editing Book' }}</h4>
 <hr>
 <form #form='ngForm' (ngSubmit)="isNewBook ? onSubmit() : onUpdate()">
   <div>
@@ -57,4 +57,5 @@
   <div>
     <button class='btn btn-primary' type="submit" [disabled]="form.invalid">{{ isNewBook? 'Submit' : 'Update' }}</button>
   </div>
+  <hr>
 </form>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorService } from "../../../services/author/author.service";
 import { Author } from "../../../models/IAuthor";
-import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {filter} from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +10,6 @@ import {filter} from "rxjs";
 })
 export class MainComponent implements OnInit {
   authors: Author[] = [];
-
   constructor(private authorService: AuthorService, private router: Router) { }
 
   ngOnInit(): void {

@@ -14,11 +14,12 @@ export class GenresComponent implements OnInit {
     name: ""
   };
 
-  constructor(private genreService: GenreService) {
-  }
+  constructor(private genreService: GenreService) {}
 
   ngOnInit(): void {
-    this.fetchGenres();
+    this.genreService.getAll().subscribe(genres => {
+      this.genres = genres;
+    })
   }
 
   onSubmit() {
@@ -31,13 +32,6 @@ export class GenresComponent implements OnInit {
     this.genreService.deleteGenre(id).subscribe(() => {
       this.genres = this.genres.filter(genre => genre.id !== id)
     });
-  }
-
-
-  fetchGenres() {
-    this.genreService.getAll().subscribe(genres => {
-      this.genres = genres;
-    })
   }
 
   sort() {

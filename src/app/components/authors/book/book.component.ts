@@ -10,16 +10,19 @@ import {Author} from "../../../models/IAuthor";
   styleUrls: ['./book.component.css']
 })
 export class BookComponent implements OnInit {
-  books: Book[] = [];
-  authorId: string | null = '';
-
   @Input() state: string = '';
 
+  authorId: string | null = '';
   searchTerm: string = '';
-  searchResults: Book[] = [];
   isSearchActive: boolean = false;
 
-  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router) { }
+  books: Book[] = [];
+  searchResults: Book[] = [];
+
+  constructor(private bookService: BookService,
+              private route: ActivatedRoute,
+              private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.authorId = this.route.snapshot.paramMap.get('id');

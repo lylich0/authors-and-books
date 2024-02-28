@@ -19,8 +19,7 @@ export class CustomValidatorDirective implements Validator {
         }
         else {
           let date = new Date(control.value);
-          // 2006
-          if (date.getFullYear() > 2024) {
+          if (date.getFullYear() > 2006) {
             return { 'invalidDate': true }
           }
         }

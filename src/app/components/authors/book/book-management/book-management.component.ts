@@ -12,9 +12,11 @@ import {map} from "rxjs";
   styleUrls: ['./book-management.component.css']
 })
 export class BookManagementComponent implements OnInit {
-  isNewBook: boolean = true
+  isNewBook: boolean = true;
 
-  books: Book[] = [];
+  authorId: string | null = '';
+  bookId: string | null = '';
+
   genres: Genre[] = [];
 
   updatedBook: Book = {
@@ -28,10 +30,6 @@ export class BookManagementComponent implements OnInit {
     pageCount: 10,
     genre: ""
   }
-
-  authorId: string | null = '';
-  bookId: string | null = '';
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,

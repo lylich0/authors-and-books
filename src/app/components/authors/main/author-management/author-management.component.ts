@@ -10,8 +10,15 @@ import {Author} from "../../../../models/IAuthor";
 })
 export class AuthorManagementComponent implements OnInit {
   state: string = '';
+  id: string | null = '';
 
-  author: Author = {birthDate: new Date(), lastName: "", firstName: '', books: [], id: '' };
+  author: Author = {
+    birthDate: new Date(),
+    lastName: "",
+    firstName: '',
+    books: [],
+    id: ''
+  };
 
   newAuthor: Author = {
     birthDate: null as unknown as Date,
@@ -21,8 +28,6 @@ export class AuthorManagementComponent implements OnInit {
     books: []
   };
 
-  id: string | null = '';
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -30,9 +35,9 @@ export class AuthorManagementComponent implements OnInit {
   ) {}
 
   headerText: { [key: string]: string } = {
-    'add': 'Adding author',
-    'edit': 'Editing author information',
-    'view': 'Viewing author details'
+    'add': 'Adding new author',
+    'edit': "Editing author's information",
+    'view': "Viewing author's details"
   };
 
   ngOnInit(): void {
