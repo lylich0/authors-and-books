@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import {Observable, of, tap} from "rxjs";
 import {Author} from "../../models/IAuthor";
 import { Injectable } from "@angular/core";
 import {HttpClient} from "@angular/common/http";
@@ -28,11 +28,18 @@ export class AuthorService {
   }
 
   getAll(): Observable<Author[]> {
-    return this.http.get<Author[]>(this.baseURL);
+    const sortedAuthorsJson = localStorage.getItem('sortedAuthors');
+    if (sortedAuthorsJson) {
+      const authors: Author[] = JSON.parse(sortedAuthorsJson);
+      return of(authors);
+    }
+    else {
+      return this.http.get<Author[]>(this.baseURL);
+    }
   }
 
-  sortAll(authors: Author[], sortBy: string): Author[] {
-    return authors.sort((a, b) => {
+  sort(authors: Author[], sortBy: string): Author[] {
+    const sortedAuthors = authors.sort((a, b) => {
       if (sortBy === 'firstName') {
         return a.firstName.localeCompare(b.firstName);
       } else if (sortBy === 'lastName') {
@@ -43,8 +50,9 @@ export class AuthorService {
         return 0;
       }
     });
+    localStorage.setItem('sortedAuthors', JSON.stringify(sortedAuthors));
+    return sortedAuthors;
   }
-
   get(id: any): Observable<Author> {
     return this.http.get<Author>(`${this.baseURL}/${id}`);
   }

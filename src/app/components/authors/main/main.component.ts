@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
   authors: Author[] = [];
-  selectedAuthor: Author | null = null;
 
   constructor(private authorService: AuthorService, private router: Router) { }
 
@@ -41,6 +40,6 @@ export class MainComponent implements OnInit {
     })
   }
   sort(sortBy: string) {
-    this.authorService.sortAll(this.authors, sortBy);
+    this.authorService.sort(this.authors, sortBy);
   }
 }
