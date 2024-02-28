@@ -1,15 +1,19 @@
+:root {
+  --margin: 0 10px;
+}
+
 * {
-  margin: 0 5px;
+  margin: 0;
 }
 
 .card {
-  margin: 10px 0;
-  padding: 5px;
+  padding: 10px;
   background-color: #FFF5EE;
   border: 2px solid darkgray;
+  box-sizing: border-box;
 }
 
-button {
+.card button {
   margin: 5px 0;
 }
 
@@ -18,16 +22,21 @@ form {
   flex-direction: column;
 }
 
-form div {
-  margin: 5px 0;
-}
 form label {
-  margin: 0;
   width: 110px;
 }
 
 form input, form select {
+  height: 30px;
   width: 180px;
 }
 
+.input-group {
+  display: flex;
+  align-items: center;
+}
 
+.input-group input, .input-group button {
+  height: 40px;
+  box-sizing: border-box;
+}

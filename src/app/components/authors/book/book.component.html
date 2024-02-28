@@ -1,4 +1,4 @@
-<div class="input-group">
+<div class="input-group mt-2 mb-2">
   <input type="text" class="form-control" id="searchInput" placeholder="Enter book title" [(ngModel)]="searchTerm">
   <button class="btn btn-primary" type="button" (click)="searchBooks()">Search</button>
 </div>
@@ -23,7 +23,7 @@
   </div>
 </div>
 <ng-template #allBooks>
-  <div *ngFor="let book of books" class="card d-flex flex-row">
+  <div *ngFor="let book of books" class="card d-flex flex-row mt-3 mb-3">
     <div class="card-body">
       <h5 class="card-title">Title: {{ book.title }}</h5>
       <p class="card-text">Genre: {{ book.genre }}</p>

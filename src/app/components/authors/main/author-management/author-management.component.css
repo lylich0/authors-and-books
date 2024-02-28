@@ -1,0 +1,7 @@
+form {
+  margin: var(--margin);
+}
+
+form > div {
+  margin: 5px 0;
+}
