@@ -1,1 +1,13 @@
-<p>genres works!</p>
+<div>
+  <div class="input-group mt-3 mb-3">
+    <input class="form-control" type="text" id='genre' placeholder="Enter new genre" [(ngModel)]="genre.name">
+    <button class='btn btn-primary' type="button" (click)="onSubmit()">Add</button>
+  </div>
+  <div *ngFor="let genre of genres" class="list-group m-0">
+    <div class="list-group-item bg-light mt-1 mb-1 d-flex justify-content-between align-items-baseline">
+      <p>{{ genre.name }}</p>
+      <button class='btn btn-danger' type="button" (click)="onDelete(genre.id)">Delete</button>
+    </div>
+  </div>
+</div>
+

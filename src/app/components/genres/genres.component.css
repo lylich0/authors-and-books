@@ -1,0 +1,3 @@
+:host > div {
+  margin: var(--margin);
+}
