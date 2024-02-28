@@ -56,7 +56,8 @@ export class BookService {
   searchBooks(authorId: any, search: string): Observable<Author> {
     return this.http.get<Author>(`${this.baseURL}/${authorId}`).pipe(
       map((author: Author) => {
-        author.books = author.books.filter(book => book.title === search);
+        const regex = new RegExp(`\\b${search}`, 'i');
+        author.books = author.books.filter(book => regex.test(book.title));
         return author;
       })
     );

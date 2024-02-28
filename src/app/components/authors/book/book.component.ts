@@ -41,7 +41,7 @@ export class BookComponent implements OnInit {
   editBook(bookId: string): void {
     this.router.navigate(['/authors', this.authorId, 'edit', 'book', bookId]);
   }
-  addBook() {
+  addBook(): void {
     this.router.navigate(['/authors', this.authorId, 'edit', 'book', 'new']);
   }
 
@@ -51,9 +51,6 @@ export class BookComponent implements OnInit {
         (author: Author) => {
           this.searchResults = author.books;
           this.isSearchActive = true;
-        },
-        error => {
-          console.error('Error searching books:', error);
         }
       );
     } else {
