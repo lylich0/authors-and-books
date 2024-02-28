@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorService } from "../../../services/author/author.service";
 import { Author } from "../../../models/IAuthor";
-import { Router } from '@angular/router';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-main',

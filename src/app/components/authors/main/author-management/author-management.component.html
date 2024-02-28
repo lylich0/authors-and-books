@@ -15,16 +15,16 @@
            [disabled]="state === 'view'"
     />
     <ng-container *ngIf="firstNameControl.invalid && firstNameControl.touched">
-      <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
+      <div class="text-danger" *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
         You must enter a value.
       </div>
       <ng-template #invalidTextError>
-        <div *ngIf="firstNameControl.errors?.['invalidText']; else minlengthError">
+        <div class="text-danger" *ngIf="firstNameControl.errors?.['invalidText']; else minlengthError">
           Please enter a valid name.
         </div>
       </ng-template>
       <ng-template #minlengthError>
-        <div *ngIf="firstNameControl.errors?.['minlength']">
+        <div class="text-danger" *ngIf="firstNameControl.errors?.['minlength']">
           Please enter at least 2 characters.
         </div>
       </ng-template>
@@ -52,16 +52,16 @@
            [disabled]="state === 'view'"
     />
     <ng-container *ngIf="lastNameControl.invalid && lastNameControl.touched">
-      <div *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
+      <div class="text-danger" *ngIf="firstNameControl.errors?.['required']; else invalidTextError">
         You must enter a value.
       </div>
       <ng-template #invalidTextError>
-        <div *ngIf="lastNameControl.errors?.['invalidText']; else minlengthError">
+        <div class="text-danger" *ngIf="lastNameControl.errors?.['invalidText']; else minlengthError">
           Please enter a valid name.
         </div>
       </ng-template>
       <ng-template #minlengthError>
-        <div *ngIf="lastNameControl.errors?.['minlength']">
+        <div class="text-danger" *ngIf="lastNameControl.errors?.['minlength']">
           Please enter at least 2 characters.
         </div>
       </ng-template>
@@ -73,12 +73,18 @@
       type="date"
       name="birthDate"
       id="birthDate"
+      #birthDateControl="ngModel"
       appCustomValidation
       [validationType]="'date'"
       [ngModel]="state === 'add' ? newAuthor.birthDate : author.birthDate"
       (ngModelChange)="state === 'add' ? newAuthor.birthDate = $event : author.birthDate = $event"
       [disabled]="state === 'view'"
     />
+    <ng-container *ngIf="birthDateControl.invalid && birthDateControl.touched">
+      <div class="text-danger" *ngIf="birthDateControl.errors?.['invalidDate']">
+        Please ensure that author is at least 18 years old.
+      </div>
+    </ng-container>
   </div>
   <div *ngIf="state !== 'view'">
     <button class='btn btn-primary' type="submit" [disabled]="form.invalid">{{ state === 'add' ? 'Submit' : 'Update' }}</button>

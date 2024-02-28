@@ -25,7 +25,7 @@ export class BookManagementComponent implements OnInit {
 
   newBook: Book = {
     title: "",
-    pageCount: 0,
+    pageCount: 10,
     genre: ""
   }
 
